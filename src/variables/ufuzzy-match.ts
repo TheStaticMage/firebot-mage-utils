@@ -2,7 +2,7 @@ import { Effects } from "@crowbartools/firebot-custom-scripts-types/types/effect
 import { ReplaceVariable } from '@crowbartools/firebot-custom-scripts-types/types/modules/replace-variable-manager';
 import { fuzzyPreprocess, matchResult } from "./common";
 import { logger } from "../main";
-const uFuzzy = require("@leeoniya/ufuzzy");
+const uFuzzy = require("@leeoniya/ufuzzy").default;
 
 const model : ReplaceVariable = {
     definition: {
