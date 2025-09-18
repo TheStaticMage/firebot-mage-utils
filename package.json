@@ -1,7 +1,7 @@
 {
     "name": "firebot-mage-utils",
     "scriptOutputName": "firebot-mage-utils",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "TheStaticMage's utility library for Firebot Custom Scripts.",
     "main": "",
     "scripts": {
@@ -31,6 +31,7 @@
         "webpack-cli": "^6.0.1"
     },
     "dependencies": {
+        "@leeoniya/ufuzzy": "^1.0.19",
         "closest-match": "^1.3.3"
     }
 }
