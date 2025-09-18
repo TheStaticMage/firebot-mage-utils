@@ -25,6 +25,7 @@ The script needs to be installed like any other Firebot startup script.
 - **`$closestMatch`**: Closest match for given text in an array using Levenshtein distance.
 - **`$fileNameWithExtension`**: Given a directory and a filename without an extension, return the filename (with its extension) that exists in the directory.
 - **`$filenamesInDirectory`**: Returns some or all filenames in a given directory, ignoring subdirectories and not recursing.
+- **`$uFuzzyMatch`**: Closest match using the [uFuzzy](https://github.com/leeoniya/uFuzzy) implementation.
 
 ## Support
 
