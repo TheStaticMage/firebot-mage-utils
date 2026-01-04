@@ -1,5 +1,5 @@
 import { Effects } from "@crowbartools/firebot-custom-scripts-types/types/effects";
-import model from './closest-match';
+import model from '../closest-match';
 
 describe('closestMatch variable', () => {
     let mockTrigger: Effects.Trigger;
