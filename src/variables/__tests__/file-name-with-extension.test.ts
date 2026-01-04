@@ -4,7 +4,7 @@ import * as path from 'path';
 import * as os from 'os';
 
 // Mock the firebot and logger modules before importing the model
-jest.mock('../main', () => ({
+jest.mock('../../main', () => ({
     firebot: {
         modules: {
             fs: require('fs'),
@@ -19,7 +19,7 @@ jest.mock('../main', () => ({
     }
 }));
 
-import model from './file-name-with-extension';
+import model from '../file-name-with-extension';
 
 describe('fileNameWithExtension variable', () => {
     let tempDir: string;
@@ -296,7 +296,7 @@ describe('fileNameWithExtension variable', () => {
             });
 
             it('should log error details when directory read fails', () => {
-                const { logger } = require('../main');
+                const { logger } = require('../../main');
                 const invalidPath = '/nonexistent/directory';
 
                 model.evaluator(mockTrigger, invalidPath, 'testfile');

@@ -1,5 +1,5 @@
 import { Effects } from "@crowbartools/firebot-custom-scripts-types/types/effects";
-import model from './format-usd';
+import model from '../format-usd';
 
 describe('formatUSD variable', () => {
     let mockTrigger: Effects.Trigger;

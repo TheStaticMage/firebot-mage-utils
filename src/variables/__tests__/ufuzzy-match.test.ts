@@ -1,5 +1,5 @@
 import { Effects } from "@crowbartools/firebot-custom-scripts-types/types/effects";
-import model from './ufuzzy-match';
+import model from '../ufuzzy-match';
 
 // Mock uFuzzy to provide the .default export that the implementation expects
 jest.mock("@leeoniya/ufuzzy", () => {
