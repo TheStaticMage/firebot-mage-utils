@@ -1,7 +1,7 @@
 {
     "name": "firebot-mage-utils",
     "scriptOutputName": "firebot-mage-utils",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "description": "TheStaticMage's utility library for Firebot Custom Scripts.",
     "main": "",
     "scripts": {
@@ -10,6 +10,7 @@
         "build:version": "node ./scripts/update-version.js",
         "build:webpack": "webpack",
         "copy": "node ./scripts/copy-build.js",
+        "lint": "eslint .",
         "prepare": "",
         "test": "jest --coverage",
         "jest": "jest --coverage"
