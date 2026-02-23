@@ -31,3 +31,16 @@ export function matchResult(result: string, matches: string[]): string {
     const matchIndex = normalizedMatches.indexOf(result.toLocaleLowerCase());
     return matchIndex >= 0 ? matches[matchIndex] : "";
 }
+
+export function parseFiniteNumericParam(value?: string | number | null): number | null {
+    if (value === null || value === undefined) {
+        return null;
+    }
+
+    if (typeof value === "string" && value.trim() === "") {
+        return null;
+    }
+
+    const numericValue = Number(value);
+    return Number.isFinite(numericValue) ? numericValue : null;
+}

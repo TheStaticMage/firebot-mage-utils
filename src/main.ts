@@ -1,11 +1,11 @@
-import { Firebot, RunRequest } from '@crowbartools/firebot-custom-scripts-types';
-import { Logger } from '@crowbartools/firebot-custom-scripts-types/types/modules/logger';
+import type { Firebot, RunRequest } from '@crowbartools/firebot-custom-scripts-types';
+import type { Logger } from '@crowbartools/firebot-custom-scripts-types/types/modules/logger';
 import { registerReplaceVariables } from './variables';
 
 export let firebot: RunRequest<any>;
 export let logger: LogWrapper;
 
-const scriptVersion = '0.0.5';
+const scriptVersion = '0.0.6';
 
 const script: Firebot.CustomScript<any> = {
     getScriptManifest: () => {
