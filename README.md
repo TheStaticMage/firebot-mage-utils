@@ -9,8 +9,10 @@ This is a [Firebot](https://firebot.app) plugin that adds utility replacement va
 ### Replacement Variables
 
 - **`$closestMatch`**: Closest match for given text in an array using Levenshtein distance.
+- **`$ensureArray`**: Ensures input is an array. Wraps primitives, extracts object keys, and converts null/undefined to empty arrays.
 - **`$fileNameWithExtension`**: Given a directory and a filename without an extension, return the filename with its extension that exists in the directory.
 - **`$filenamesInDirectory`**: Returns some or all filenames in a given directory, ignoring subdirectories and not recursing.
+- **`$flattenArray`**: Flattens nested arrays and objects into a single-level array, with configurable depth limit.
 - **`$formatUSD`**: Converts a number to US dollar currency format with optional division and thousands separators. [Reference](/doc/reference/format-usd.md)
 - **`$streamUptime`**: Returns the current Twitch stream uptime in seconds as a string, or `-1` when the stream is offline. Use built-in `$uptime` if you want a formatted string.
 - **`$uFuzzyMatch`**: Closest match using the [uFuzzy](https://github.com/leeoniya/uFuzzy) implementation.
