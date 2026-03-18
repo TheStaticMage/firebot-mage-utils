@@ -1,17 +1,18 @@
-import { firebot } from '../main';
-import closestMatch from './closest-match';
-import degreesToDirection from './degrees-to-direction';
-import ensureArray from './ensure-array';
-import fileNameWithExtension from './file-name-with-extension';
-import filenamesInDirectory from './filenames-in-directory';
-import flattenArray from './flatten-array';
-import formatUSD from './format-usd';
-import haversineDistance from './haversine-distance';
-import metersToMiles from './meters-to-miles';
-import milesToMeters from './miles-to-meters';
-import streamUptime from './stream-uptime';
-import travelBearing from './travel-bearing';
-import uFuzzyMatch from './ufuzzy-match';
+import { firebot } from "../main";
+import closestMatch from "./closest-match";
+import degreesToDirection from "./degrees-to-direction";
+import ensureArray from "./ensure-array";
+import fileNameWithExtension from "./file-name-with-extension";
+import filenamesInDirectory from "./filenames-in-directory";
+import flattenArray from "./flatten-array";
+import formatUSD from "./format-usd";
+import formatUSDText from "./format-usd-text";
+import haversineDistance from "./haversine-distance";
+import metersToMiles from "./meters-to-miles";
+import milesToMeters from "./miles-to-meters";
+import streamUptime from "./stream-uptime";
+import travelBearing from "./travel-bearing";
+import uFuzzyMatch from "./ufuzzy-match";
 
 export function registerReplaceVariables() {
     const { replaceVariableManager } = firebot.modules;
@@ -23,6 +24,7 @@ export function registerReplaceVariables() {
     replaceVariableManager.registerReplaceVariable(fileNameWithExtension);
     replaceVariableManager.registerReplaceVariable(flattenArray);
     replaceVariableManager.registerReplaceVariable(formatUSD);
+    replaceVariableManager.registerReplaceVariable(formatUSDText);
     replaceVariableManager.registerReplaceVariable(haversineDistance);
     replaceVariableManager.registerReplaceVariable(metersToMiles);
     replaceVariableManager.registerReplaceVariable(milesToMeters);
