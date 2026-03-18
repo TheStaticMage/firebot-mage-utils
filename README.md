@@ -15,6 +15,7 @@ This is a [Firebot](https://firebot.app) plugin that adds utility replacement va
 - **`$filenamesInDirectory`**: Returns some or all filenames in a given directory, ignoring subdirectories and not recursing.
 - **`$flattenArray`**: Flattens nested arrays and objects into a single-level array, with configurable depth limit.
 - **`$formatUSD`**: Converts a number to US dollar currency format with optional division and thousands separators. [Reference](/doc/reference/format-usd.md)
+- **`$formatUSDText`**: Converts a dollar amount to English words optimized for text-to-speech (TTS). Supports amounts from -10 trillion to 10 trillion inclusive. [Reference](/doc/reference/format-usd-text.md)
 - **`$haversineDistance`**: Calculates the distance in meters between two geographic coordinates using the Haversine formula.
 - **`$metersToMiles`**: Converts a distance in meters to miles.
 - **`$milesToMeters`**: Converts a distance in miles to meters.
@@ -27,6 +28,7 @@ This is a [Firebot](https://firebot.app) plugin that adds utility replacement va
 - [Installation](/doc/installation.md)
 - [Upgrading](/doc/upgrading.md)
 - [Format USD Reference](/doc/reference/format-usd.md)
+- [Format USD Text Reference](/doc/reference/format-usd-text.md)
 
 ## Support
 
