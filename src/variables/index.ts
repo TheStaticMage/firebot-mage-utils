@@ -10,6 +10,7 @@ import formatUSDText from "./format-usd-text";
 import haversineDistance from "./haversine-distance";
 import metersToMiles from "./meters-to-miles";
 import milesToMeters from "./miles-to-meters";
+import parseYaml from "./parse-yaml";
 import streamUptime from "./stream-uptime";
 import travelBearing from "./travel-bearing";
 import uFuzzyMatch from "./ufuzzy-match";
@@ -28,6 +29,7 @@ export function registerReplaceVariables() {
     replaceVariableManager.registerReplaceVariable(haversineDistance);
     replaceVariableManager.registerReplaceVariable(metersToMiles);
     replaceVariableManager.registerReplaceVariable(milesToMeters);
+    replaceVariableManager.registerReplaceVariable(parseYaml);
     replaceVariableManager.registerReplaceVariable(streamUptime);
     replaceVariableManager.registerReplaceVariable(travelBearing);
     replaceVariableManager.registerReplaceVariable(uFuzzyMatch);
