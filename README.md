@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This is a [Firebot](https://firebot.app) plugin that adds utility replacement variables for common workflows.
+This is a [Firebot](https://firebot.app) plugin that adds utility replacement variables and effects for common workflows.
 
 ## Features
 
@@ -24,6 +24,10 @@ This is a [Firebot](https://firebot.app) plugin that adds utility replacement va
 - **`$travelBearing`**: Calculates the initial bearing in degrees (0-360) from one geographic coordinate to another.
 - **`$uFuzzyMatch`**: Closest match using the [uFuzzy](https://github.com/leeoniya/uFuzzy) implementation.
 
+### Effects
+
+- **`Add User to Viewer Database`**: Adds a Twitch user to the Firebot viewer database if they are not already present, using a user ID, username, or both. [Reference](/doc/reference/add-user-to-viewer-database.md)
+
 ## Documentation
 
 - [Installation](/doc/installation.md)
@@ -31,6 +35,7 @@ This is a [Firebot](https://firebot.app) plugin that adds utility replacement va
 - [Format USD Reference](/doc/reference/format-usd.md)
 - [Format USD Text Reference](/doc/reference/format-usd-text.md)
 - [Parse YAML Reference](/doc/reference/parse-yaml.md)
+- [Add User to Viewer Database Reference](/doc/reference/add-user-to-viewer-database.md)
 
 ## Support
 
