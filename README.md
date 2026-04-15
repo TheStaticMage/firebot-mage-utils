@@ -19,6 +19,7 @@ This is a [Firebot](https://firebot.app) plugin that adds utility replacement va
 - **`$haversineDistance`**: Calculates the distance in meters between two geographic coordinates using the Haversine formula.
 - **`$metersToMiles`**: Converts a distance in meters to miles.
 - **`$milesToMeters`**: Converts a distance in miles to meters.
+- **`$parseYAML`**: Parses YAML-formatted text and outputs the result as a JSON string. Multiple arguments are concatenated with newlines. [Reference](/doc/reference/parse-yaml.md)
 - **`$streamUptime`**: Returns the current Twitch stream uptime in seconds as a string, or `-1` when the stream is offline. Use built-in `$uptime` if you want a formatted string.
 - **`$travelBearing`**: Calculates the initial bearing in degrees (0-360) from one geographic coordinate to another.
 - **`$uFuzzyMatch`**: Closest match using the [uFuzzy](https://github.com/leeoniya/uFuzzy) implementation.
@@ -29,6 +30,7 @@ This is a [Firebot](https://firebot.app) plugin that adds utility replacement va
 - [Upgrading](/doc/upgrading.md)
 - [Format USD Reference](/doc/reference/format-usd.md)
 - [Format USD Text Reference](/doc/reference/format-usd-text.md)
+- [Parse YAML Reference](/doc/reference/parse-yaml.md)
 
 ## Support
 

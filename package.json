@@ -11,6 +11,7 @@
         "build:webpack": "webpack",
         "copy": "node ./scripts/copy-build.js",
         "lint": "eslint .",
+        "lint:fix": "eslint . --fix",
         "prepare": "",
         "test": "jest --coverage",
         "jest": "jest --coverage"
@@ -33,6 +34,8 @@
     },
     "dependencies": {
         "@leeoniya/ufuzzy": "^1.0.19",
-        "closest-match": "^1.3.3"
+        "@types/js-yaml": "^4.0.9",
+        "closest-match": "^1.3.3",
+        "js-yaml": "^4.1.1"
     }
 }
