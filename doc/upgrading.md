@@ -8,6 +8,7 @@
 
 | Plugin Version | Minimum Firebot Version |
 | --- | --- |
+| 0.0.7+ | 5.65 and 5.66 |
 | 0.0.1+ | 5.65 |
 
 ## Upgrade Procedure
@@ -21,4 +22,6 @@ Optional: Delete any older versions of this plugin from your Firebot scripts dir
 
 ## Upgrade Notes
 
-No upgrade notes for this release.
+### Firebot 5.66
+
+:fire: Plugin version 0.0.7 is compatible with a breaking change in the Firebot 5.66 custom scripting API.
