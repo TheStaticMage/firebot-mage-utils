@@ -17,7 +17,7 @@ export function fuzzyPreprocess(input: string, matches: string[]): string | null
 
     // Check for exact match
     const normalizedInput = input.trim().toLocaleLowerCase();
-    const normalizedMatches = matches.map(a => a.toLocaleLowerCase());
+    const normalizedMatches = matches.map((a) => a.toLocaleLowerCase());
     const exactMatchIndex = normalizedMatches.indexOf(normalizedInput);
     if (exactMatchIndex >= 0) {
         return matches[exactMatchIndex];
@@ -27,7 +27,7 @@ export function fuzzyPreprocess(input: string, matches: string[]): string | null
 }
 
 export function matchResult(result: string, matches: string[]): string {
-    const normalizedMatches = matches.map(a => a.toLocaleLowerCase());
+    const normalizedMatches = matches.map((a) => a.toLocaleLowerCase());
     const matchIndex = normalizedMatches.indexOf(result.toLocaleLowerCase());
     return matchIndex >= 0 ? matches[matchIndex] : "";
 }

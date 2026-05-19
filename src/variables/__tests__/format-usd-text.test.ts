@@ -193,9 +193,7 @@ describe("formatUSDText variable", () => {
 
             it("should convert nine hundred ninety-nine thousand nine hundred ninety-nine to words", () => {
                 const result = model.evaluator(mockTrigger, 999999);
-                expect(result).toBe(
-                    "nine hundred ninety-nine thousand nine hundred ninety-nine dollars"
-                );
+                expect(result).toBe("nine hundred ninety-nine thousand nine hundred ninety-nine dollars");
             });
         });
 
@@ -212,9 +210,7 @@ describe("formatUSDText variable", () => {
 
             it("should convert one million two hundred thirty-four thousand five hundred sixty-seven to words", () => {
                 const result = model.evaluator(mockTrigger, 1234567);
-                expect(result).toBe(
-                    "one million two hundred thirty-four thousand five hundred sixty-seven dollars"
-                );
+                expect(result).toBe("one million two hundred thirty-four thousand five hundred sixty-seven dollars");
             });
 
             it("should convert ten million to words", () => {
@@ -229,9 +225,7 @@ describe("formatUSDText variable", () => {
 
             it("should convert nine hundred ninety-nine million nine hundred ninety-nine thousand nine hundred ninety-nine to words", () => {
                 const result = model.evaluator(mockTrigger, 999999999);
-                expect(result).toBe(
-                    "nine hundred ninety-nine million nine hundred ninety-nine thousand nine hundred ninety-nine dollars"
-                );
+                expect(result).toBe("nine hundred ninety-nine million nine hundred ninety-nine thousand nine hundred ninety-nine dollars");
             });
         });
 
@@ -275,9 +269,7 @@ describe("formatUSDText variable", () => {
 
             it("should convert nine trillion nine hundred ninety-nine billion... to words", () => {
                 const result = model.evaluator(mockTrigger, 9999999999999);
-                expect(result).toBe(
-                    "nine trillion nine hundred ninety-nine billion nine hundred ninety-nine million nine hundred ninety-nine thousand nine hundred ninety-nine dollars"
-                );
+                expect(result).toBe("nine trillion nine hundred ninety-nine billion nine hundred ninety-nine million nine hundred ninety-nine thousand nine hundred ninety-nine dollars");
             });
         });
 
@@ -334,9 +326,7 @@ describe("formatUSDText variable", () => {
 
             it("should handle high cents with compound dollars", () => {
                 const result = model.evaluator(mockTrigger, 1234.56);
-                expect(result).toBe(
-                    "one thousand two hundred thirty-four dollars and fifty-six cents"
-                );
+                expect(result).toBe("one thousand two hundred thirty-four dollars and fifty-six cents");
             });
         });
 
@@ -373,9 +363,7 @@ describe("formatUSDText variable", () => {
 
             it("should prefix negative with all scale words", () => {
                 const result = model.evaluator(mockTrigger, -1234567890);
-                expect(result).toBe(
-                    "negative one billion two hundred thirty-four million five hundred sixty-seven thousand eight hundred ninety dollars"
-                );
+                expect(result).toBe("negative one billion two hundred thirty-four million five hundred sixty-seven thousand eight hundred ninety dollars");
             });
 
             it("should handle negative ten trillion", () => {
@@ -439,9 +427,7 @@ describe("formatUSDText variable", () => {
         describe("string input conversion", () => {
             it("should convert string number to words", () => {
                 const result = model.evaluator(mockTrigger, "123.45");
-                expect(result).toBe(
-                    "one hundred twenty-three dollars and forty-five cents"
-                );
+                expect(result).toBe("one hundred twenty-three dollars and forty-five cents");
             });
 
             it("should convert string integer to words", () => {
@@ -456,9 +442,7 @@ describe("formatUSDText variable", () => {
 
             it("should handle string with commas", () => {
                 const result = model.evaluator(mockTrigger, "1,234.56");
-                expect(result).toBe(
-                    "one thousand two hundred thirty-four dollars and fifty-six cents"
-                );
+                expect(result).toBe("one thousand two hundred thirty-four dollars and fifty-six cents");
             });
 
             it("should handle string with whitespace", () => {
@@ -468,9 +452,7 @@ describe("formatUSDText variable", () => {
 
             it("should clean string with dollar sign and commas", () => {
                 const result = model.evaluator(mockTrigger, "$1,234.56");
-                expect(result).toBe(
-                    "one thousand two hundred thirty-four dollars and fifty-six cents"
-                );
+                expect(result).toBe("one thousand two hundred thirty-four dollars and fifty-six cents");
             });
 
             it("should clean string with negative and dollar sign", () => {
@@ -486,7 +468,6 @@ describe("formatUSDText variable", () => {
             });
 
             it("should treat null as zero dollars", () => {
-                // biome-ignore lint/suspicious/noExplicitAny: Needed for this test
                 const result = model.evaluator(mockTrigger, null as any);
                 expect(result).toBe("zero dollars");
             });
@@ -543,9 +524,7 @@ describe("formatUSDText variable", () => {
 
             it("should handle 10 trillion minus 1 cent", () => {
                 const result = model.evaluator(mockTrigger, 9999999999999.99);
-                expect(result).toBe(
-                    "nine trillion nine hundred ninety-nine billion nine hundred ninety-nine million nine hundred ninety-nine thousand nine hundred ninety-nine dollars and ninety-nine cents"
-                );
+                expect(result).toBe("nine trillion nine hundred ninety-nine billion nine hundred ninety-nine million nine hundred ninety-nine thousand nine hundred ninety-nine dollars and ninety-nine cents");
             });
 
             it("should return empty string for just over 10 trillion with cents", () => {
@@ -566,7 +545,6 @@ describe("formatUSDText variable", () => {
             });
 
             it("should treat null divisor as 1", () => {
-                // biome-ignore lint/suspicious/noExplicitAny: Needed for this test
                 const result = model.evaluator(mockTrigger, 100, null as any);
                 expect(result).toBe("one hundred dollars");
             });
@@ -577,7 +555,6 @@ describe("formatUSDText variable", () => {
             });
 
             it("should treat non-numeric divisor as 1", () => {
-                // biome-ignore lint/suspicious/noExplicitAny: Needed for this test
                 const result = model.evaluator(mockTrigger, 100, "abc" as any);
                 expect(result).toBe("one hundred dollars");
             });
@@ -643,9 +620,7 @@ describe("formatUSDText variable", () => {
 
             it("should handle large real-world amount", () => {
                 const result = model.evaluator(mockTrigger, 123456789.99);
-                expect(result).toBe(
-                    "one hundred twenty-three million four hundred fifty-six thousand seven hundred eighty-nine dollars and ninety-nine cents"
-                );
+                expect(result).toBe("one hundred twenty-three million four hundred fifty-six thousand seven hundred eighty-nine dollars and ninety-nine cents");
             });
         });
     });

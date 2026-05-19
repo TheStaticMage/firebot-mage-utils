@@ -9,7 +9,8 @@ const model: ReplaceVariable = {
     definition: {
         handle: "degreesToDirection",
         usage: "degreesToDirection[degrees, subDirections]",
-        description: "Converts a bearing in degrees to a compass direction abbreviation. Returns 8-point directions (N, NE, E, SE, S, SW, W, NW) by default. Pass true as the second argument to enable 16-point mode, which adds NNE, ENE, ESE, SSE, SSW, WSW, WNW, and NNW. Accepts any numeric value; normalizes via modulo 360. Returns empty string for invalid input.",
+        description:
+            "Converts a bearing in degrees to a compass direction abbreviation. Returns 8-point directions (N, NE, E, SE, S, SW, W, NW) by default. Pass true as the second argument to enable 16-point mode, which adds NNE, ENE, ESE, SSE, SSW, WSW, WNW, and NNW. Accepts any numeric value; normalizes via modulo 360. Returns empty string for invalid input.",
         categories: ["advanced"],
         possibleDataOutput: ["text"],
         examples: [
@@ -27,11 +28,7 @@ const model: ReplaceVariable = {
             }
         ]
     },
-    evaluator: (
-        trigger: Effects.Trigger,
-        degrees?: string | number,
-        subDirections?: boolean | string
-    ): string => {
+    evaluator: (trigger: Effects.Trigger, degrees?: string | number, subDirections?: boolean | string): string => {
         const deg = parseFiniteNumericParam(degrees);
         if (deg === null) {
             return "";

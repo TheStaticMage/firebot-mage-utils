@@ -1,22 +1,20 @@
-import { Effects } from "@crowbartools/firebot-custom-scripts-types/types/effects";
-import { ReplaceVariable } from '@crowbartools/firebot-custom-scripts-types/types/modules/replace-variable-manager';
-import { fuzzyPreprocess, matchResult } from "./common";
+import type { Effects } from "@crowbartools/firebot-custom-scripts-types/types/effects";
+import type { ReplaceVariable } from "@crowbartools/firebot-custom-scripts-types/types/modules/replace-variable-manager";
 import { logger } from "../main";
+import { fuzzyPreprocess, matchResult } from "./common";
+
+// biome-ignore lint/style/noCommonJs: This module is used in a CommonJS context --- IGNORE ---
 const uFuzzy = require("@leeoniya/ufuzzy").default;
 
-const model : ReplaceVariable = {
+const model: ReplaceVariable = {
     definition: {
         handle: "uFuzzyMatch",
-        usage: 'uFuzzyMatch[needle, haystack]',
+        usage: "uFuzzyMatch[needle, haystack]",
         description: "Finds the closest match in the haystack for the provided needle via uFuzzy (https://github.com/leeoniya/uFuzzy).",
         categories: ["advanced"],
         possibleDataOutput: ["text"]
     },
-    evaluator: (
-        trigger: Effects.Trigger,
-        text?: string,
-        array?: string[]
-    ) : string => {
+    evaluator: (_trigger: Effects.Trigger, text?: string, array?: string[]): string => {
         if (!text || !array || typeof text !== "string" || !Array.isArray(array) || array.length === 0 || text.trim() === "") {
             return "";
         }
@@ -27,7 +25,7 @@ const model : ReplaceVariable = {
         }
 
         const needle = text.trim().toLocaleLowerCase();
-        const haystack = array.map(a => a.toLocaleLowerCase());
+        const haystack = array.map((a) => a.toLocaleLowerCase());
 
         // Taken from Grafana's fuzzy search implementation
         // https://github.com/grafana/grafana/blob/main/packages/grafana-data/src/utils/fuzzySearch.ts
@@ -49,7 +47,7 @@ const model : ReplaceVariable = {
         // eslint-disable-next-line new-cap
         const uf = new uFuzzy({ intraMode: 1 });
         if (REGEXP_NON_ASCII.test(needle) || REGEXP_ONLY_SYMBOLS.test(needle) || needle.length > maxNeedleLength || uf.split(needle).length > maxFuzzyTerms) {
-            const needleRegex = new RegExp(needle.replace(/[\\^$*+?.()|[\]{}/]/g, '\\$&'), 'i');
+            const needleRegex = new RegExp(needle.replace(/[\\^$*+?.()|[\]{}/]/g, "\\$&"), "i");
             for (const item of array) {
                 if (needleRegex.test(item)) {
                     return matchResult(item, array);
@@ -69,9 +67,7 @@ const model : ReplaceVariable = {
             return "";
         }
 
-        const haystackPreview = haystack.length > 10
-            ? `${JSON.stringify(haystack.slice(0, 10))}, ...`
-            : JSON.stringify(haystack);
+        const haystackPreview = haystack.length > 10 ? `${JSON.stringify(haystack.slice(0, 10))}, ...` : JSON.stringify(haystack);
         logger.debug(`uFuzzy: no matches found (needle: "${needle}", haystack: ${haystackPreview})`);
         return "";
     }

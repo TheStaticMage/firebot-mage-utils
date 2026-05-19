@@ -8,16 +8,11 @@ const model: ReplaceVariable = {
     definition: {
         handle: "fileNameWithExtension",
         usage: "fileNameWithExtension[c:/path/to/directory, filename]",
-        description:
-			"Finds the file 'filename' in the provided directory, and returns it with its extension if any (e.g. 'filename.mp3'). Only returns actual files, never directories.",
+        description: "Finds the file 'filename' in the provided directory, and returns it with its extension if any (e.g. 'filename.mp3'). Only returns actual files, never directories.",
         categories: ["advanced"],
         possibleDataOutput: ["text"]
     },
-    evaluator: (
-        _trigger: Effects.Trigger,
-        filePath?: string,
-        filename?: string
-    ): string => {
+    evaluator: (_trigger: Effects.Trigger, filePath?: string, filename?: string): string => {
         if (!filePath || !filename) {
             return "";
         }
@@ -31,22 +26,17 @@ const model: ReplaceVariable = {
                 }
             }
 
-            const matches = dirFiles.filter(f => f.startsWith(`${filename}.`));
+            const matches = dirFiles.filter((f) => f.startsWith(`${filename}.`));
             for (const match of matches) {
                 const candidatePath = path.join(filePath, match);
-                if (
-                    fs.existsSync(candidatePath) &&
-					fs.statSync(candidatePath).isFile()
-                ) {
+                if (fs.existsSync(candidatePath) && fs.statSync(candidatePath).isFile()) {
                     return match;
                 }
             }
 
             return "";
         } catch (err) {
-            logger.error(
-                `Error reading directory in fileNameWithExtension variable: filePath=${filePath} filename=${filename}: ${err}`
-            );
+            logger.error(`Error reading directory in fileNameWithExtension variable: filePath=${filePath} filename=${filename}: ${err}`);
             return "";
         }
     }

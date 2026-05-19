@@ -2,44 +2,11 @@ import type { Effects } from "@crowbartools/firebot-custom-scripts-types/types/e
 import type { ReplaceVariable } from "@crowbartools/firebot-custom-scripts-types/types/modules/replace-variable-manager";
 
 // Lookup tables for number-to-words conversion
-const ones = [
-    "zero",
-    "one",
-    "two",
-    "three",
-    "four",
-    "five",
-    "six",
-    "seven",
-    "eight",
-    "nine"
-];
+const ones = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
 
-const teens = [
-    "ten",
-    "eleven",
-    "twelve",
-    "thirteen",
-    "fourteen",
-    "fifteen",
-    "sixteen",
-    "seventeen",
-    "eighteen",
-    "nineteen"
-];
+const teens = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
 
-const tens = [
-    "",
-    "",
-    "twenty",
-    "thirty",
-    "forty",
-    "fifty",
-    "sixty",
-    "seventy",
-    "eighty",
-    "ninety"
-];
+const tens = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
 
 const scales = [
     { value: 1000000000000, name: "trillion" },
@@ -121,15 +88,10 @@ function convertToWords(num: number): string {
  * Parse amount and divisor as strings to preserve precision,
  * then divide and return result as fixed-point string with 2 decimal places.
  */
-function divideWithPrecision(
-    amountStr: string,
-    divisorStr: string
-): { result: string; isNegative: boolean } {
+function divideWithPrecision(amountStr: string, divisorStr: string): { result: string; isNegative: boolean } {
     // Remove non-numeric chars except minus, decimal, digits
     const cleanAmount = amountStr.replace(/[^0-9.-]/g, "").replace(/(?!^)-/g, "");
-    const cleanDivisor = divisorStr
-        .replace(/[^0-9.-]/g, "")
-        .replace(/(?!^)-/g, "");
+    const cleanDivisor = divisorStr.replace(/[^0-9.-]/g, "").replace(/(?!^)-/g, "");
 
     // Determine if result is negative
     const amountNegative = cleanAmount.startsWith("-");
@@ -179,15 +141,13 @@ const model: ReplaceVariable = {
     definition: {
         handle: "formatUSDText",
         usage: "formatUSDText[amount, divisor]",
-        description:
-			"Converts a dollar amount to English words optimized for text-to-speech (TTS). Optionally divides by a divisor before converting. Supports amounts from -10 trillion to 10 trillion inclusive.",
+        description: "Converts a dollar amount to English words optimized for text-to-speech (TTS). Optionally divides by a divisor before converting. Supports amounts from -10 trillion to 10 trillion inclusive.",
         categories: ["advanced"],
         possibleDataOutput: ["text"],
         examples: [
             {
                 usage: "formatUSDText[420.69]",
-                description:
-					"Converts to: four hundred twenty dollars and sixty-nine cents"
+                description: "Converts to: four hundred twenty dollars and sixty-nine cents"
             },
             {
                 usage: "formatUSDText[100]",
@@ -195,21 +155,15 @@ const model: ReplaceVariable = {
             },
             {
                 usage: "formatUSDText[-200.4]",
-                description:
-					"Converts to: negative two hundred dollars and forty cents"
+                description: "Converts to: negative two hundred dollars and forty cents"
             },
             {
                 usage: "formatUSDText[10000, 100]",
-                description:
-					"Divides 10000 by 100 and converts to: one hundred dollars"
+                description: "Divides 10000 by 100 and converts to: one hundred dollars"
             }
         ]
     },
-    evaluator: (
-        trigger: Effects.Trigger,
-        amount?: string | number,
-        divisor?: string | number
-    ): string => {
+    evaluator: (trigger: Effects.Trigger, amount?: string | number, divisor?: string | number): string => {
         const amountStr = String(amount ?? "");
         const divisorStr = String(divisor ?? "");
 
@@ -219,10 +173,7 @@ const model: ReplaceVariable = {
         }
 
         // Perform division with precision
-        const { result: fixedStr, isNegative } = divideWithPrecision(
-            amountStr,
-            divisorStr
-        );
+        const { result: fixedStr, isNegative } = divideWithPrecision(amountStr, divisorStr);
 
         // Split into dollars and cents
         const [dollarPart, centPart] = fixedStr.split(".");
