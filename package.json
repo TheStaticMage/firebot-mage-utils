@@ -10,7 +10,7 @@
         "build:version": "node ./scripts/update-version.js",
         "build:webpack": "webpack",
         "copy": "node ./scripts/copy-build.js",
-        "lint": "eslint .",
+        "lint": "eslint . --max-warnings 0",
         "lint:fix": "eslint . --fix",
         "prepare": "",
         "test": "jest --coverage",

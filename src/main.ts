@@ -1,5 +1,9 @@
-import type { Firebot, RunRequest } from "@crowbartools/firebot-custom-scripts-types";
+import type {
+    Firebot,
+    RunRequest
+} from "@crowbartools/firebot-custom-scripts-types";
 import type { Logger } from "@crowbartools/firebot-custom-scripts-types/types/modules/logger";
+import { registerEffects } from "./effects";
 import { registerReplaceVariables } from "./variables";
 
 export let firebot: RunRequest<any>;
@@ -11,7 +15,8 @@ const script: Firebot.CustomScript<any> = {
     getScriptManifest: () => {
         return {
             name: "TheStaticMage's Utilities",
-            description: "TheStaticMage's utility library for Firebot Custom Scripts.",
+            description:
+				"TheStaticMage's utility library for Firebot Custom Scripts.",
             author: "The Static Mage",
             version: scriptVersion,
             startupOnly: true,
@@ -29,6 +34,7 @@ const script: Firebot.CustomScript<any> = {
         logger = new LogWrapper(runRequest.modules.logger);
         logger.info(`TheStaticMage's Utilities v${scriptVersion} initializing...`);
         registerReplaceVariables();
+        registerEffects();
         logger.info(`TheStaticMage's Utilities v${scriptVersion} initialized.`);
     }
 };
