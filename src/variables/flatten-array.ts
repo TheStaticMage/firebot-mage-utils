@@ -3,11 +3,7 @@ import { ReplaceVariable } from "@crowbartools/firebot-custom-scripts-types/type
 
 const MAX_DEPTH = 100;
 
-function flattenValue(
-    value: unknown,
-    visited = new WeakSet(),
-    depth = 0
-): unknown[] {
+function flattenValue(value: unknown, visited = new WeakSet(), depth = 0): unknown[] {
     if (depth > MAX_DEPTH) {
         return [];
     }
@@ -73,8 +69,7 @@ const model: ReplaceVariable = {
     definition: {
         handle: "flattenArray",
         usage: "flattenArray[input]",
-        description:
-            "Recursively flattens nested arrays into a single-level array. Converts objects/Maps to their keys. Wraps primitives in an array. Returns [] for null, undefined, or empty strings.",
+        description: "Recursively flattens nested arrays into a single-level array. Converts objects/Maps to their keys. Wraps primitives in an array. Returns [] for null, undefined, or empty strings.",
         categories: ["advanced"],
         possibleDataOutput: ["array"],
         examples: [

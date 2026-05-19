@@ -46,9 +46,7 @@ describe("fileNameWithExtension variable", () => {
         });
 
         it("should have correct usage format", () => {
-            expect(model.definition.usage).toBe(
-                "fileNameWithExtension[c:/path/to/directory, filename]"
-            );
+            expect(model.definition.usage).toBe("fileNameWithExtension[c:/path/to/directory, filename]");
         });
 
         it("should have advanced category", () => {
@@ -81,10 +79,7 @@ describe("fileNameWithExtension variable", () => {
             it("should prefer exact match over extension match", () => {
                 // Create both exact match and extension match
                 fs.writeFileSync(path.join(tempDir, "testfile"), "exact content");
-                fs.writeFileSync(
-                    path.join(tempDir, "testfile.txt"),
-                    "extension content"
-                );
+                fs.writeFileSync(path.join(tempDir, "testfile.txt"), "extension content");
 
                 const result = model.evaluator(mockTrigger, tempDir, "testfile");
                 expect(result).toBe("testfile");
@@ -98,17 +93,12 @@ describe("fileNameWithExtension variable", () => {
 
                 const result = model.evaluator(mockTrigger, tempDir, "testfile");
                 // Should return one of the extension matches
-                expect(["testfile.txt", "testfile.md", "testfile.js"]).toContain(
-                    result
-                );
+                expect(["testfile.txt", "testfile.md", "testfile.js"]).toContain(result);
                 expect(result).not.toBe("testfile");
             });
 
             it("should handle files with multiple dots in extension", () => {
-                fs.writeFileSync(
-                    path.join(tempDir, "archive.tar.gz"),
-                    "archive content"
-                );
+                fs.writeFileSync(path.join(tempDir, "archive.tar.gz"), "archive content");
 
                 const result = model.evaluator(mockTrigger, tempDir, "archive");
                 expect(result).toBe("archive.tar.gz");
@@ -159,9 +149,7 @@ describe("fileNameWithExtension variable", () => {
                 fs.writeFileSync(filePath, "content");
 
                 // Mock the directory listing to include the file
-                const mockReaddirSync = jest
-                    .spyOn(fs, "readdirSync")
-                    .mockReturnValue(["testfile.txt"] as any);
+                const mockReaddirSync = jest.spyOn(fs, "readdirSync").mockReturnValue(["testfile.txt"] as any);
 
                 // Delete the actual file
                 fs.unlinkSync(filePath);
@@ -181,10 +169,7 @@ describe("fileNameWithExtension variable", () => {
 
                 // Create a symlink to a non-existent file
                 try {
-                    fs.symlinkSync(
-                        "/nonexistent/target",
-                        path.join(tempDir, "testfile.txt")
-                    );
+                    fs.symlinkSync("/nonexistent/target", path.join(tempDir, "testfile.txt"));
 
                     const result = model.evaluator(mockTrigger, tempDir, "testfile");
                     expect(result).toBe("");
@@ -201,10 +186,7 @@ describe("fileNameWithExtension variable", () => {
             it("should not match files in subdirectories", () => {
                 // Create subdirectory with matching file
                 fs.mkdirSync(path.join(tempDir, "subdir"));
-                fs.writeFileSync(
-                    path.join(tempDir, "subdir", "testfile.txt"),
-                    "content"
-                );
+                fs.writeFileSync(path.join(tempDir, "subdir", "testfile.txt"), "content");
 
                 const result = model.evaluator(mockTrigger, tempDir, "testfile");
                 expect(result).toBe("");
@@ -313,17 +295,9 @@ describe("fileNameWithExtension variable", () => {
 
                 model.evaluator(mockTrigger, invalidPath, "testfile");
 
-                expect(logger.error).toHaveBeenCalledWith(
-                    expect.stringContaining(
-                        "Error reading directory in fileNameWithExtension variable"
-                    )
-                );
-                expect(logger.error).toHaveBeenCalledWith(
-                    expect.stringContaining(`filePath=${invalidPath}`)
-                );
-                expect(logger.error).toHaveBeenCalledWith(
-                    expect.stringContaining("filename=testfile")
-                );
+                expect(logger.error).toHaveBeenCalledWith(expect.stringContaining("Error reading directory in fileNameWithExtension variable"));
+                expect(logger.error).toHaveBeenCalledWith(expect.stringContaining(`filePath=${invalidPath}`));
+                expect(logger.error).toHaveBeenCalledWith(expect.stringContaining("filename=testfile"));
             });
 
             it("should handle permission errors gracefully", () => {
@@ -338,11 +312,7 @@ describe("fileNameWithExtension variable", () => {
                     fs.mkdirSync(restrictedDir);
                     fs.chmodSync(restrictedDir, 0o000);
 
-                    const result = model.evaluator(
-                        mockTrigger,
-                        restrictedDir,
-                        "testfile"
-                    );
+                    const result = model.evaluator(mockTrigger, restrictedDir, "testfile");
                     expect(result).toBe("");
 
                     // Restore permissions for cleanup
@@ -358,11 +328,9 @@ describe("fileNameWithExtension variable", () => {
                 // Create a file then mock fs.statSync to throw an error
                 fs.writeFileSync(path.join(tempDir, "testfile.txt"), "content");
 
-                const mockStatSync = jest
-                    .spyOn(fs, "statSync")
-                    .mockImplementation(() => {
-                        throw new Error("Stat error");
-                    });
+                const mockStatSync = jest.spyOn(fs, "statSync").mockImplementation(() => {
+                    throw new Error("Stat error");
+                });
 
                 const result = model.evaluator(mockTrigger, tempDir, "testfile");
                 expect(result).toBe("");
@@ -376,11 +344,7 @@ describe("fileNameWithExtension variable", () => {
             it("should handle filenames with spaces", () => {
                 fs.writeFileSync(path.join(tempDir, "file with spaces.txt"), "content");
 
-                const result = model.evaluator(
-                    mockTrigger,
-                    tempDir,
-                    "file with spaces"
-                );
+                const result = model.evaluator(mockTrigger, tempDir, "file with spaces");
                 expect(result).toBe("file with spaces.txt");
             });
 

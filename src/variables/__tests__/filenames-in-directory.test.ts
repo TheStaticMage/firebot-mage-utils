@@ -41,16 +41,12 @@ describe("filenamesInDirectory variable", () => {
         });
 
         it("should have proper description", () => {
-            expect(model.definition.description).toContain(
-                "Returns an array of filenames"
-            );
+            expect(model.definition.description).toContain("Returns an array of filenames");
             expect(model.definition.description).toContain("not subdirectories");
         });
 
         it("should have correct usage format", () => {
-            expect(model.definition.usage).toBe(
-                "filenamesInDirectory[c:/path/to/directory]"
-            );
+            expect(model.definition.usage).toBe("filenamesInDirectory[c:/path/to/directory]");
         });
 
         it("should have examples array", () => {
@@ -95,10 +91,7 @@ describe("filenamesInDirectory variable", () => {
                 fs.mkdirSync(path.join(tempDir, "subdir2"));
 
                 // Create files in subdirectories
-                fs.writeFileSync(
-                    path.join(tempDir, "subdir1", "nested.txt"),
-                    "nested content"
-                );
+                fs.writeFileSync(path.join(tempDir, "subdir1", "nested.txt"), "nested content");
 
                 const result = model.evaluator(mockTrigger, tempDir);
                 expect(result).toHaveLength(2);
@@ -122,14 +115,8 @@ describe("filenamesInDirectory variable", () => {
             });
 
             it("should handle files with multiple dots in names", () => {
-                fs.writeFileSync(
-                    path.join(tempDir, "file.backup.txt"),
-                    "backup content"
-                );
-                fs.writeFileSync(
-                    path.join(tempDir, "config.local.json"),
-                    "config content"
-                );
+                fs.writeFileSync(path.join(tempDir, "file.backup.txt"), "backup content");
+                fs.writeFileSync(path.join(tempDir, "config.local.json"), "config content");
                 fs.writeFileSync(path.join(tempDir, "script.min.js"), "script content");
 
                 const result = model.evaluator(mockTrigger, tempDir);
@@ -176,11 +163,7 @@ describe("filenamesInDirectory variable", () => {
             });
 
             it("should filter files with multiple extensions", () => {
-                const result = model.evaluator(
-                    mockTrigger,
-                    tempDir,
-                    "\\.(js|css|json)$"
-                );
+                const result = model.evaluator(mockTrigger, tempDir, "\\.(js|css|json)$");
                 expect(result).toHaveLength(3);
                 expect(result).toContain("script.js");
                 expect(result).toContain("style.css");
@@ -198,11 +181,7 @@ describe("filenamesInDirectory variable", () => {
             });
 
             it("should handle complex regex patterns", () => {
-                const result = model.evaluator(
-                    mockTrigger,
-                    tempDir,
-                    "(document|image)\\."
-                );
+                const result = model.evaluator(mockTrigger, tempDir, "(document|image)\\.");
                 expect(result).toHaveLength(2);
                 expect(result).toContain("document.txt");
                 expect(result).toContain("image.png");
@@ -251,13 +230,7 @@ describe("filenamesInDirectory variable", () => {
             });
 
             it("should strip extensions with regex filter", () => {
-                const result = model.evaluator(
-                    mockTrigger,
-                    tempDir,
-                    "\\.js$",
-                    "",
-                    true
-                );
+                const result = model.evaluator(mockTrigger, tempDir, "\\.js$", "", true);
                 expect(result).toHaveLength(1);
                 expect(result).toContain("script.min");
             });
@@ -266,13 +239,7 @@ describe("filenamesInDirectory variable", () => {
                 fs.writeFileSync(path.join(tempDir, "archive.tar.gz"), "content");
                 fs.writeFileSync(path.join(tempDir, "backup.sql.bak"), "content");
 
-                const result = model.evaluator(
-                    mockTrigger,
-                    tempDir,
-                    "\\.(gz|bak)$",
-                    "",
-                    true
-                );
+                const result = model.evaluator(mockTrigger, tempDir, "\\.(gz|bak)$", "", true);
                 expect(result).toHaveLength(2);
                 expect(result).toContain("archive.tar");
                 expect(result).toContain("backup.sql");
@@ -290,13 +257,7 @@ describe("filenamesInDirectory variable", () => {
             });
 
             it("should combine regex filtering and extension stripping", () => {
-                const result = model.evaluator(
-                    mockTrigger,
-                    tempDir,
-                    "\\.txt$",
-                    "i",
-                    true
-                );
+                const result = model.evaluator(mockTrigger, tempDir, "\\.txt$", "i", true);
                 expect(result).toHaveLength(3);
                 expect(result).toContain("test1");
                 expect(result).toContain("test2");
@@ -305,13 +266,7 @@ describe("filenamesInDirectory variable", () => {
             });
 
             it("should handle all parameters together", () => {
-                const result = model.evaluator(
-                    mockTrigger,
-                    tempDir,
-                    "^test",
-                    "i",
-                    true
-                );
+                const result = model.evaluator(mockTrigger, tempDir, "^test", "i", true);
                 expect(result).toHaveLength(2);
                 expect(result).toContain("test1");
                 expect(result).toContain("test2");
@@ -363,14 +318,8 @@ describe("filenamesInDirectory variable", () => {
 
                 model.evaluator(mockTrigger, invalidPath);
 
-                expect(logger.error).toHaveBeenCalledWith(
-                    expect.stringContaining(
-                        "Error reading directory in filenamesInDirectory variable"
-                    )
-                );
-                expect(logger.error).toHaveBeenCalledWith(
-                    expect.stringContaining(`dirpath=${invalidPath}`)
-                );
+                expect(logger.error).toHaveBeenCalledWith(expect.stringContaining("Error reading directory in filenamesInDirectory variable"));
+                expect(logger.error).toHaveBeenCalledWith(expect.stringContaining(`dirpath=${invalidPath}`));
             });
         });
 
@@ -385,14 +334,7 @@ describe("filenamesInDirectory variable", () => {
             });
 
             it("should handle special characters in filenames", () => {
-                const specialFiles = [
-                    "file with spaces.txt",
-                    "file-with-dashes.txt",
-                    "file_with_underscores.txt",
-                    "file(with)parentheses.txt",
-                    "file[with]brackets.txt",
-                    "file{with}braces.txt"
-                ];
+                const specialFiles = ["file with spaces.txt", "file-with-dashes.txt", "file_with_underscores.txt", "file(with)parentheses.txt", "file[with]brackets.txt", "file{with}braces.txt"];
 
                 specialFiles.forEach((filename) => {
                     fs.writeFileSync(path.join(tempDir, filename), "content");
@@ -406,12 +348,7 @@ describe("filenamesInDirectory variable", () => {
             });
 
             it("should handle unicode filenames", () => {
-                const unicodeFiles = [
-                    "ファイル.txt",
-                    "файл.txt",
-                    "αρχείο.txt",
-                    "文件.txt"
-                ];
+                const unicodeFiles = ["ファイル.txt", "файл.txt", "αρχείο.txt", "文件.txt"];
 
                 unicodeFiles.forEach((filename) => {
                     fs.writeFileSync(path.join(tempDir, filename), "content");
@@ -440,13 +377,7 @@ describe("filenamesInDirectory variable", () => {
                 expect(result1).toContain("test.txt");
 
                 // Test with truthy value
-                const result2 = model.evaluator(
-                    mockTrigger,
-                    tempDir,
-                    null,
-                    "",
-                    "true" as any
-                );
+                const result2 = model.evaluator(mockTrigger, tempDir, null, "", "true" as any);
                 expect(result2).toContain("test"); // Should strip extension
             });
         });

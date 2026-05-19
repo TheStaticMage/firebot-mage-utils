@@ -1,5 +1,5 @@
 import { Effects } from "@crowbartools/firebot-custom-scripts-types/types/effects";
-import { ReplaceVariable } from '@crowbartools/firebot-custom-scripts-types/types/modules/replace-variable-manager';
+import { ReplaceVariable } from "@crowbartools/firebot-custom-scripts-types/types/modules/replace-variable-manager";
 import { firebot, logger } from "../main";
 
 const model: ReplaceVariable = {

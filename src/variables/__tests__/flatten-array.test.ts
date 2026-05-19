@@ -97,19 +97,12 @@ describe("flattenArray replace variable", () => {
         });
 
         it("complex deep nesting should be flattened", () => {
-            const result = flattenArrayModel.evaluator(
-                trigger,
-                [1, [2, [3, [4, [5]]]]]
-            );
+            const result = flattenArrayModel.evaluator(trigger, [1, [2, [3, [4, [5]]]]]);
             expect(result).toEqual([1, 2, 3, 4, 5]);
         });
 
         it("arrays with multiple nesting levels at different depths", () => {
-            const result = flattenArrayModel.evaluator(trigger, [
-                [1, 2],
-                [3, [4, 5]],
-                6
-            ]);
+            const result = flattenArrayModel.evaluator(trigger, [[1, 2], [3, [4, 5]], 6]);
             expect(result).toEqual([1, 2, 3, 4, 5, 6]);
         });
     });
@@ -146,27 +139,17 @@ describe("flattenArray replace variable", () => {
 
     describe("mixed structures", () => {
         it("array with objects should extract keys only", () => {
-            const result = flattenArrayModel.evaluator(trigger, [
-                { a: 1 },
-                { b: 2 }
-            ]);
+            const result = flattenArrayModel.evaluator(trigger, [{ a: 1 }, { b: 2 }]);
             expect(result.sort()).toEqual(["a", "b"]);
         });
 
         it("array with nested objects should extract keys only", () => {
-            const result = flattenArrayModel.evaluator(trigger, [
-                1,
-                { a: [2, 3] },
-                4
-            ]);
+            const result = flattenArrayModel.evaluator(trigger, [1, { a: [2, 3] }, 4]);
             expect(result.sort()).toEqual([1, 4, "a"]);
         });
 
         it("complex mixed structure should flatten arrays and extract keys", () => {
-            const result = flattenArrayModel.evaluator(trigger, [
-                [{ a: [1, 2] }, 3],
-                4
-            ]);
+            const result = flattenArrayModel.evaluator(trigger, [[{ a: [1, 2] }, 3], 4]);
             expect(result.sort()).toEqual([3, 4, "a"]);
         });
 
@@ -208,10 +191,7 @@ describe("flattenArray replace variable", () => {
         });
 
         it("JSON string with complex nested structure", () => {
-            const result = flattenArrayModel.evaluator(
-                trigger,
-                '[[1, [2]], {"a": [3, 4]}]'
-            );
+            const result = flattenArrayModel.evaluator(trigger, '[[1, [2]], {"a": [3, 4]}]');
             expect(result.sort()).toEqual([1, 2, "a"]);
         });
     });
@@ -238,21 +218,12 @@ describe("flattenArray replace variable", () => {
         });
 
         it("deeply nested empty arrays should be removed", () => {
-            const result = flattenArrayModel.evaluator(trigger, [
-                [[]],
-                [1],
-                [[]]
-            ]);
+            const result = flattenArrayModel.evaluator(trigger, [[[]], [1], [[]]]);
             expect(result).toEqual([1]);
         });
 
         it("array with mixed empty and full structures", () => {
-            const result = flattenArrayModel.evaluator(trigger, [
-                [],
-                [1, [2, []]],
-                {},
-                3
-            ]);
+            const result = flattenArrayModel.evaluator(trigger, [[], [1, [2, []]], {}, 3]);
             expect(result).toEqual([1, 2, 3]);
         });
     });

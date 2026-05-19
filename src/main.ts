@@ -1,7 +1,4 @@
-import type {
-    Firebot,
-    RunRequest
-} from "@crowbartools/firebot-custom-scripts-types";
+import type { Firebot, RunRequest } from "@crowbartools/firebot-custom-scripts-types";
 import type { Logger } from "@crowbartools/firebot-custom-scripts-types/types/modules/logger";
 import { registerEffects } from "./effects";
 import { registerReplaceVariables } from "./variables";
@@ -15,8 +12,7 @@ const script: Firebot.CustomScript<any> = {
     getScriptManifest: () => {
         return {
             name: "TheStaticMage's Utilities",
-            description:
-				"TheStaticMage's utility library for Firebot Custom Scripts.",
+            description: "TheStaticMage's utility library for Firebot Custom Scripts.",
             author: "The Static Mage",
             version: scriptVersion,
             startupOnly: true,

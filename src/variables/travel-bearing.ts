@@ -10,7 +10,8 @@ const model: ReplaceVariable = {
     definition: {
         handle: "travelBearing",
         usage: "travelBearing[lat1, lon1, lat2, lon2]",
-        description: "Returns the initial bearing in degrees (0-360) from one geographic coordinate to another, where 0 is north, 90 is east, 180 is south, and 270 is west. Rounded to 2 decimal places. Returns empty string for invalid or out-of-range inputs.",
+        description:
+            "Returns the initial bearing in degrees (0-360) from one geographic coordinate to another, where 0 is north, 90 is east, 180 is south, and 270 is west. Rounded to 2 decimal places. Returns empty string for invalid or out-of-range inputs.",
         categories: ["advanced"],
         possibleDataOutput: ["text"],
         examples: [
@@ -20,13 +21,7 @@ const model: ReplaceVariable = {
             }
         ]
     },
-    evaluator: (
-        _trigger: Effects.Trigger,
-        lat1?: string | number,
-        lon1?: string | number,
-        lat2?: string | number,
-        lon2?: string | number
-    ): string => {
+    evaluator: (_trigger: Effects.Trigger, lat1?: string | number, lon1?: string | number, lat2?: string | number, lon2?: string | number): string => {
         const pLat1 = parseFiniteNumericParam(lat1);
         const pLon1 = parseFiniteNumericParam(lon1);
         const pLat2 = parseFiniteNumericParam(lat2);
@@ -48,7 +43,7 @@ const model: ReplaceVariable = {
 
         const x = Math.sin(dLon) * Math.cos(rLat2);
         const y = Math.cos(rLat1) * Math.sin(rLat2) - Math.sin(rLat1) * Math.cos(rLat2) * Math.cos(dLon);
-        const bearing = (Math.atan2(x, y) * 180 / Math.PI + 360) % 360;
+        const bearing = ((Math.atan2(x, y) * 180) / Math.PI + 360) % 360;
 
         return bearing.toFixed(2);
     }

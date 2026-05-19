@@ -21,8 +21,14 @@ describe("ensureArray replace variable", () => {
         });
 
         it("nested array should return unchanged", () => {
-            const result = ensureArrayModel.evaluator(trigger, [[1, 2], [3, 4]]);
-            expect(result).toEqual([[1, 2], [3, 4]]);
+            const result = ensureArrayModel.evaluator(trigger, [
+                [1, 2],
+                [3, 4]
+            ]);
+            expect(result).toEqual([
+                [1, 2],
+                [3, 4]
+            ]);
         });
     });
 

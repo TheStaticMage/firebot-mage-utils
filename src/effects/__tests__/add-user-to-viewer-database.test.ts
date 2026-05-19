@@ -115,9 +115,7 @@ describe("Add User to Viewer Database effect", () => {
         expect(viewerDatabase.getViewerById).toHaveBeenCalledWith("12345");
         expect(twitchApi.users.getUserById).toHaveBeenCalledWith("12345");
         expect(result.success).toBe(false);
-        expect(result.errorMessage).toBe(
-            "Provided user ID and username do not match."
-        );
+        expect(result.errorMessage).toBe("Provided user ID and username do not match.");
         expect(viewerDatabase.createNewViewer).not.toHaveBeenCalled();
     });
 
@@ -138,9 +136,7 @@ describe("Add User to Viewer Database effect", () => {
             effect: { username: "@viewername" }
         } as never)) as any;
 
-        expect(viewerDatabase.getViewerByUsername).toHaveBeenCalledWith(
-            "viewername"
-        );
+        expect(viewerDatabase.getViewerByUsername).toHaveBeenCalledWith("viewername");
         expect(twitchApi.users.getUserByName).toHaveBeenCalledWith("viewername");
         expect(viewerDatabase.createNewViewer).toHaveBeenCalledWith({
             id: "12345",
@@ -165,9 +161,7 @@ describe("Add User to Viewer Database effect", () => {
             effect: { username: "viewername" }
         } as never)) as any;
 
-        expect(viewerDatabase.getViewerByUsername).toHaveBeenCalledWith(
-            "viewername"
-        );
+        expect(viewerDatabase.getViewerByUsername).toHaveBeenCalledWith("viewername");
         expect(twitchApi.users.getUserByName).not.toHaveBeenCalled();
         expect(result.success).toBe(true);
         expect(result.userPreviouslyExisted).toBe(true);
@@ -187,9 +181,7 @@ describe("Add User to Viewer Database effect", () => {
         } as never)) as any;
 
         expect(viewerDatabase.getViewerById).toHaveBeenCalledWith("12345");
-        expect(viewerDatabase.getViewerByUsername).toHaveBeenCalledWith(
-            "viewername"
-        );
+        expect(viewerDatabase.getViewerByUsername).toHaveBeenCalledWith("viewername");
         expect(twitchApi.users.getUserById).not.toHaveBeenCalled();
         expect(twitchApi.users.getUserByName).not.toHaveBeenCalled();
         expect(viewerDatabase.createNewViewer).not.toHaveBeenCalled();
@@ -213,9 +205,7 @@ describe("Add User to Viewer Database effect", () => {
         } as never)) as any;
 
         expect(result.success).toBe(false);
-        expect(result.errorMessage).toBe(
-            "Provided user ID and username matched different existing users."
-        );
+        expect(result.errorMessage).toBe("Provided user ID and username matched different existing users.");
         expect(twitchApi.users.getUserById).not.toHaveBeenCalled();
         expect(twitchApi.users.getUserByName).not.toHaveBeenCalled();
         expect(viewerDatabase.createNewViewer).not.toHaveBeenCalled();
@@ -233,9 +223,7 @@ describe("Add User to Viewer Database effect", () => {
         } as never)) as any;
 
         expect(result.success).toBe(false);
-        expect(result.errorMessage).toBe(
-            "Provided user ID does not match existing user's ID."
-        );
+        expect(result.errorMessage).toBe("Provided user ID does not match existing user's ID.");
         expect(twitchApi.users.getUserById).not.toHaveBeenCalled();
         expect(twitchApi.users.getUserByName).not.toHaveBeenCalled();
         expect(viewerDatabase.createNewViewer).not.toHaveBeenCalled();
@@ -253,9 +241,7 @@ describe("Add User to Viewer Database effect", () => {
         } as never)) as any;
 
         expect(result.success).toBe(false);
-        expect(result.errorMessage).toBe(
-            "Provided username does not match existing user's username."
-        );
+        expect(result.errorMessage).toBe("Provided username does not match existing user's username.");
         expect(twitchApi.users.getUserById).not.toHaveBeenCalled();
         expect(twitchApi.users.getUserByName).not.toHaveBeenCalled();
         expect(viewerDatabase.createNewViewer).not.toHaveBeenCalled();
@@ -269,9 +255,7 @@ describe("Add User to Viewer Database effect", () => {
             effect: { username: "viewername" }
         } as never)) as any;
 
-        expect(viewerDatabase.getViewerByUsername).toHaveBeenCalledWith(
-            "viewername"
-        );
+        expect(viewerDatabase.getViewerByUsername).toHaveBeenCalledWith("viewername");
         expect(result.success).toBe(false);
         expect(result.errorMessage).toBe("Could not retrieve Twitch data.");
     });
@@ -290,9 +274,7 @@ describe("Add User to Viewer Database effect", () => {
         } as never)) as any;
 
         expect(result.success).toBe(false);
-        expect(result.errorMessage).toBe(
-            "Provided user ID does not match Twitch data ID."
-        );
+        expect(result.errorMessage).toBe("Provided user ID does not match Twitch data ID.");
         expect(viewerDatabase.createNewViewer).not.toHaveBeenCalled();
     });
 

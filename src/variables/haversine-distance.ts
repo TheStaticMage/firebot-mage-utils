@@ -12,7 +12,8 @@ const model: ReplaceVariable = {
     definition: {
         handle: "haversineDistance",
         usage: "haversineDistance[lat1, lon1, lat2, lon2]",
-        description: "Returns the distance in meters between two geographic coordinates using the Haversine formula, rounded to 2 decimal places. Latitudes must be in [-90, 90] and longitudes in [-180, 180]. Returns empty string for invalid or out-of-range inputs.",
+        description:
+            "Returns the distance in meters between two geographic coordinates using the Haversine formula, rounded to 2 decimal places. Latitudes must be in [-90, 90] and longitudes in [-180, 180]. Returns empty string for invalid or out-of-range inputs.",
         categories: ["advanced"],
         possibleDataOutput: ["text"],
         examples: [
@@ -22,13 +23,7 @@ const model: ReplaceVariable = {
             }
         ]
     },
-    evaluator: (
-        trigger: Effects.Trigger,
-        lat1?: string | number,
-        lon1?: string | number,
-        lat2?: string | number,
-        lon2?: string | number
-    ): string => {
+    evaluator: (trigger: Effects.Trigger, lat1?: string | number, lon1?: string | number, lat2?: string | number, lon2?: string | number): string => {
         const pLat1 = parseFiniteNumericParam(lat1);
         const pLon1 = parseFiniteNumericParam(lon1);
         const pLat2 = parseFiniteNumericParam(lat2);
@@ -49,8 +44,7 @@ const model: ReplaceVariable = {
         const rLat1 = toRadians(pLat1);
         const rLat2 = toRadians(pLat2);
 
-        const a = Math.sin(dLat / 2) ** 2
-            + Math.cos(rLat1) * Math.cos(rLat2) * Math.sin(dLon / 2) ** 2;
+        const a = Math.sin(dLat / 2) ** 2 + Math.cos(rLat1) * Math.cos(rLat2) * Math.sin(dLon / 2) ** 2;
         const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
         return (EARTH_RADIUS_METERS * c).toFixed(2);

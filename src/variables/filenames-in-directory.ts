@@ -8,7 +8,7 @@ const model: ReplaceVariable = {
         handle: "filenamesInDirectory",
         usage: "filenamesInDirectory[c:/path/to/directory]",
         description:
-			"Returns an array of filenames in the specified directory. Returns just the filenames, not subdirectories and not the full path. Optionally, a regexp filter and flags can be provided to filter the results. Optionally, the extensions can be stripped.",
+            "Returns an array of filenames in the specified directory. Returns just the filenames, not subdirectories and not the full path. Optionally, a regexp filter and flags can be provided to filter the results. Optionally, the extensions can be stripped.",
         examples: [
             {
                 usage: "filenamesInDirectory[c:/path/to/directory]",
@@ -20,39 +20,28 @@ const model: ReplaceVariable = {
             },
             {
                 usage: "filenamesInDirectory[c:/path/to/directory, regexp, flags]",
-                description:
-					"Lists files matching the regexp filter, passing flags to regexp filter"
+                description: "Lists files matching the regexp filter, passing flags to regexp filter"
             },
             {
-                usage:
-					"filenamesInDirectory[c:/path/to/directory, regexp, flags, true]",
-                description:
-					"Lists files matching the regexp filter, passing flags to regexp filter, and strips the extensions from the filenames"
+                usage: "filenamesInDirectory[c:/path/to/directory, regexp, flags, true]",
+                description: "Lists files matching the regexp filter, passing flags to regexp filter, and strips the extensions from the filenames"
             }
         ],
         categories: ["advanced"],
         possibleDataOutput: ["array"]
     },
-    evaluator: (
-        _trigger: Effects.Trigger,
-        dirpath: string,
-        filter: string | null = null,
-        flags = "",
-        stripExtension = false
-    ) => {
+    evaluator: (_trigger: Effects.Trigger, dirpath: string, filter: string | null = null, flags = "", stripExtension = false) => {
         if (typeof dirpath !== "string" || dirpath === "") {
             return [];
         }
 
         try {
             const dirList = fs.readdirSync(dirpath, { withFileTypes: true });
-            let result = dirList
-                .filter(dirent => dirent.isFile())
-                .map(dirent => dirent.name);
+            let result = dirList.filter((dirent) => dirent.isFile()).map((dirent) => dirent.name);
 
             if (typeof filter === "string" && filter !== "") {
                 const regexFilter = new RegExp(String(filter), String(flags));
-                result = result.filter(name => regexFilter.test(name));
+                result = result.filter((name) => regexFilter.test(name));
             }
 
             if (stripExtension) {
@@ -68,9 +57,7 @@ const model: ReplaceVariable = {
 
             return result;
         } catch (err) {
-            logger.error(
-                `Error reading directory in filenamesInDirectory variable: dirpath=${dirpath} filter=${filter} flags=${flags}: ${err}`
-            );
+            logger.error(`Error reading directory in filenamesInDirectory variable: dirpath=${dirpath} filter=${filter} flags=${flags}: ${err}`);
             return ["[Invalid Directory Path]"];
         }
     }

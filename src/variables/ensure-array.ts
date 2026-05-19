@@ -6,8 +6,7 @@ const model: ReplaceVariable = {
     definition: {
         handle: "ensureArray",
         usage: "ensureArray[input]",
-        description:
-            "Ensures the input is an array. If already an array, returns it unchanged. If null or undefined, returns an empty array. If a primitive, wraps it in an array. If an object/Map, applies flatten logic to extract keys.",
+        description: "Ensures the input is an array. If already an array, returns it unchanged. If null or undefined, returns an empty array. If a primitive, wraps it in an array. If an object/Map, applies flatten logic to extract keys.",
         categories: ["advanced"],
         possibleDataOutput: ["array"],
         examples: [
@@ -24,7 +23,7 @@ const model: ReplaceVariable = {
                 description: "Returns ['foo'] (single value wrapped in array)"
             },
             {
-                usage: "ensureArray[{\"foo\":\"bar\"}]",
+                usage: 'ensureArray[{"foo":"bar"}]',
                 description: "Returns ['foo'] (object keys extracted)"
             }
         ]
