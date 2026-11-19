@@ -1,5 +1,9 @@
 # Firebot Mage Utils
 
+## Deprecation Notice
+
+This plugin is not tested with Firebot 5.67 or later and will no longer be developed. No support or updates will be provided. Code and documentation remain archived here for reference purposes only.
+
 ## Introduction
 
 This is a [Firebot](https://firebot.app) plugin that adds utility replacement variables and effects for common workflows.
@@ -36,7 +40,7 @@ This is a [Firebot](https://firebot.app) plugin that adds utility replacement va
 - [Format USD Text Reference](/doc/reference/format-usd-text.md)
 - [Parse YAML Reference](/doc/reference/parse-yaml.md)
 - [Add User to Viewer Database Reference](/doc/reference/add-user-to-viewer-database.md)
-
+<!--
 ## Support
 
 The best way to get help is in my Discord server. Join [The Static Discord](https://discord.gg/tkV4mZDAej) and visit the `#firebot-mage-utils` channel.
@@ -59,3 +63,4 @@ If you use this on your stream, I would appreciate a shout-out. (Appreciated, bu
 - <https://www.twitch.tv/thestaticmage>
 - <https://kick.com/thestaticmage>
 - <https://youtube.com/@thestaticmagerisk>
+-->
